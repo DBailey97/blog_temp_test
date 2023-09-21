@@ -1,0 +1,17 @@
+{# post nav #}
+{% set prev = collections[globals.posts.collectionName] | getPreviousCollectionItem(page) %}
+{% set next = collections[globals.posts.collectionName] | getNextCollectionItem(page) %}
+<section class="post-navigation prev-next">
+    <div class="btn-group btn-group-block d-flex">
+        {%- if prev.url %}
+        <a class="btn btn-sm btn-outline-secondary" prompt="Older" href="{{ prev.url | url }}" title="{{ prev.data.title }}"><div>{{ prev.data.title }}</div></a>
+        {% else %}
+        <a class="btn btn-sm btn-outline-secondary disabled" prompt="Older"><div>-</div></a>
+        {% endif -%}
+        {%- if next.url %}
+        <a class="btn btn-sm btn-outline-primary" prompt="Newer" href="{{ next.url | url }}" title="{{ next.data.title }}"><div>{{ next.data.title }}</div></a>
+        {% else %}
+        <a class="btn btn-sm btn-outline-primary disabled" prompt="Newer"><div>-</div></a>
+        {% endif -%}        
+    </div>
+</section>

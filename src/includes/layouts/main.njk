@@ -1,0 +1,79 @@
+---
+#
+# container: false|true|sm|md|lg|xl|xxl|fluid
+# searchResultsContainer: false|true|sm|md|lg|xl|xxl|fluid
+# aside: 3
+# asideBreak: sm|md|lg|xl|xxl
+# asideMobile: true
+#
+theme: dark
+extraLayoutClasses:
+container: true
+searchResultsContainer: true
+aside: 3
+asideBreak: xl
+asideMobile: false
+asideContentClass:  # use .d-none | .order-[0-5|first|last]
+  series: d-none
+  related: d-none
+  recent: d-none
+  tagCloud: d-none
+  toc: d-none
+toc: false
+share: false
+comments: false
+math: false
+mermaid: false
+---
+
+{% extends './base.njk' %}
+
+{% import "macros/bs-breakpoint.html" as bs_br %}
+
+{% block main %}
+
+    <div class="{{- ('layout layout-' + layout + ' ' + (extraLayoutClasses if extraLayoutClasses else '')) | trim -}}">
+     
+        <div class="{{- 'content-container ' + bs_br.getBreakpointClass(container, "container", "container-fluid _g-0") -}}">
+
+            <div class="{{- ('hide-if-search-results-container-is-displayed' + ' ' + bs_br.getBreakpointClass(container, "row", "row _g-0")) | trim -}}">
+
+                <section class="article-section col-12 col-{{ asideBreak }}-{{ 12 - aside }} overflow-hidden">
+                    <header>{% block articleHeader %}{% endblock %}</header>
+                    <article>
+                        {% block content %}
+                            {{ content | safe }}
+                        {% endblock %}
+                    </article>
+                    <div class="article-tail">
+                        {% block articleTail %}{% endblock %}
+                    </div>
+                    <footer>{% block articleFooter %}{% endblock %}</footer>
+                </section>
+
+                <section class="aside-section {% if aside == 0 %}d-none{% else %}{% if not asideMobile %}d-none{% else %}col-12{% endif %} d-{{ asideBreak }}-flex col-{{ asideBreak }}-{{ aside }}{% endif %}">
+                    <header>{% block asideHeader %}{% endblock %}</header>
+                    <aside>{% block aside %}{% endblock %}</aside>
+                    <footer>{% block asideFooter %}{% endblock %}</footer>
+                </section>
+
+            </div>
+
+            <div class="{{- ('hide-if-search-results-container-is-displayed' + ' ' + bs_br.getBreakpointClass(container, "row", "row _g-0")) | trim -}}">
+                <!-- Add tail here? Looks weird if aside content is long! -->
+                {#
+                <section class="tail-section col-12 col-{{ asideBreak }}-{{ 12 - aside }} overflow-hidden">
+                    {% block tail %}{% endblock %}
+                </section>   
+                #}
+            </div>
+
+            <div class="{{- ('search-results-container' + ' ' + bs_br.getBreakpointClass(container, "row", "row _g-0")) | trim -}}">
+                <div class="search-results overflow-hidden"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}

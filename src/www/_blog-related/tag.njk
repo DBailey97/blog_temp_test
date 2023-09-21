@@ -1,0 +1,40 @@
+---
+layout: page
+asideContentClass:
+  recent: order-0
+  tagCloud: order-1
+  toc: d-none
+pagination:
+    data: collections.pagedPostsByTagCollection
+    size: 1
+    alias: customPagination
+permalink: "{{ customPagination.pagedPath | normalize }}"
+eleventyComputed:
+    title: "Tagged with \"{{ customPagination.name }}\""
+---
+
+<div class="taxonomy tag">
+
+    <div class="heading">
+        <a href="{{ globals.tags.path | url }}">
+            <span class="icon"><i class="fa-solid fa-tag fa-fw"></i></span>
+            <span class="prefix">Tag:</span>
+        </a>
+        <a class="title" href="{{ page.url | url }}">{{ customPagination.name }}</a>
+    </div>
+
+    <hr/>
+
+    <h2>Posts</h2>
+
+    <ul>
+        {% for post in customPagination.items %}
+            <li><a href="{{ post.url | url }}">{{ post.data.title }}</a></li>
+        {% endfor %}
+    </ul>
+
+    {% if customPagination.hrefs.length %}
+        {% include "partials/paginator.njk" %}
+    {% endif %}
+
+</div>

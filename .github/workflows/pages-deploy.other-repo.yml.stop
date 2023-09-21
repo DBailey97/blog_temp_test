@@ -1,0 +1,46 @@
+name: 'Automatic build'
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+    paths-ignore:
+      - .gitignore
+      - README.md
+      - LICENSE
+
+env:
+  ELEVENTY_ENV: PROD
+
+jobs:
+  continuous-delivery:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: install node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: npm install
+        run: npm install
+
+      - name: 11ty build
+        run: npm run build
+
+      - name: deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.GH_PAGE_PA_TOKEN }}
+          external_repository: hidegh/hidegh.github.io
+          publish_dir: ./_site
+          publish_branch: gh-pages
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'

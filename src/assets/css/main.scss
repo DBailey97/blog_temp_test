@@ -1,0 +1,91 @@
+/*
+Font-awesome
+- we decided to serve it from CDN (caching / speed)
+- it also removes us from the responsibility to serve the webfont assets
+*/
+
+/*
+BOOTSTRAP
+- we use overrides, need just to make sure that the grid classes and negative margins won't get disabled!
+*/
+
+// Best google fonts 2022: Helvetica Neue, Roboto, Open Sans, Kato, Monsterrat, Oswald, Source Sans Pro, Slabo, Raleway, PT Sans, Merriweather, Noto Sans / Serif, Nunito Sans, Concert One, Prompt, Work Sans
+@import url(https://fonts.googleapis.com/css?family=Helvetica+Neue:400,400italic,700,700italic);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,400italic,700,700italic);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,700,700italic);
+
+// Tools:
+// - https://bootswatch.com/
+// - https://paletton.com/
+// - https://www.materialpalette.com/
+// - https://huemint.com/bootstrap-basic/
+// - http://colormind.io/bootstrap/
+// - https://coolors.co/
+
+// Best themestr themes: boldstrap-purple, grayson, lovey, tequila
+// Best bootswatch themes: darkly* (dark) & flatly* (light) + litera, materia **, sandstone, slate*, superhero*, yeti
+// @import "./bootswatch/bs5/materia/variables";
+$enable-negative-margins: true;
+
+$headings-font-family:"Source Sans Pro", "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif;
+$font-family-base: "Source Sans Pro", "Times New Roman", serif;
+
+$nav-link-font-weight: 400;
+
+
+@import "bootstrap";
+// @import "./bootswatch/bs5/materia/bootswatch";
+
+/*
+Custom variables
+*/
+:root {
+
+    // color extensions
+    --color-delimiter: steelblue;
+    --color-highlight: orange;
+
+    // typography
+    --font-family-wide: "Montserrat", "Segoe UI", "Helvetica Neue", "Source Sans Pro", "Helvetica", "Arial";
+    --font-family-tall: "Segoe UI", "Helvetica Neue", "Source Sans Pro", "Helvetica", "Arial";
+
+    // main.layout
+    --navbar-main-min-height: 4em;
+
+    // navbar.link-effects
+    --nav-link-active-line-height: .2em;
+    --nav-link-active-line-color: var(--bs-warning);
+
+    // sticky
+    --sticky-border-top-color: var(--color-delimiter);
+    --sticky-border-top-size: 2px;
+    --sticky-background: var(--bs-body-bg);
+}
+
+/*
+Imports
+*/
+@import 'main/typography.scss';
+
+@import 'main/utilities.scss';
+@import 'main/utils.typo.dynamic-headings.scss';
+@import 'main/utils.printing.scss';
+@import 'main/utils.brightness.scss';
+@import 'main/utils.inline-input-group.scss';
+@import "main/utils.image-grid";
+
+@import 'main/main.layout.scss';
+@import 'main/main.styling.scss';
+@import 'main/main.sticky.scss';
+
+@import 'main/navbar.layout.scss';
+@import 'main/navbar.styling.scss';
+@import 'main/navbar.link-effects.scss';
+
+@import 'main/post.taxonomy.scss';
+@import 'main/post.card.scss';
+@import 'main/post.navigation.scss';
+@import 'main/post.scss';
+
+@import "main/patch.mermaid";
+@import "main/patch.jarallax-safety";

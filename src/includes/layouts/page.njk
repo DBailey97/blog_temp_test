@@ -1,0 +1,44 @@
+---
+# see main.njk for page-setting properties
+extraLayoutClasses:
+container: true
+searchResultsContainer: true
+aside: 3
+asideBreak: xl
+asideMobile: false
+asideContentClass:
+  recent: d-none
+  tagCloud: d-none
+  toc: order-last
+toc: true
+---
+{% extends './main.njk' %}
+
+{% import "macros/aside-sticky-container.html" as m_asideSticky %}
+
+{% block content %}
+
+    <section class="article print-container">
+        {{ content | safe }}
+    </section>
+    
+{% endblock %}
+
+{% block aside %}
+
+    <div class="sticky-container d-flex flex-column">
+
+        <div non-sticky-heading></div>
+
+        {% set recentHtml %}{% include 'partials/aside/recent-posts.html' %}{% endset %}
+        {{ m_asideSticky.renderAsideStickyContainer((asideContentClass.recent + ' sticky p-3') | trim, 'Recent Posts', recentHtml) }}
+
+        {% set tagCloudHtml %}{% include 'partials/aside/tag-cloud.html' %}{% endset %}
+        {{ m_asideSticky.renderAsideStickyContainer((asideContentClass.tagCloud + ' sticky p-3') | trim, 'Tag Cloud', tagCloudHtml) }}
+
+        {% set tocHtml %}{% include 'partials/aside/toc.html' %}{% endset %}
+        {{ m_asideSticky.renderAsideStickyContainer((asideContentClass.toc + ' sticky p-3') | trim, 'Table of Contents', tocHtml) }}
+
+    </div>
+        
+{% endblock %}

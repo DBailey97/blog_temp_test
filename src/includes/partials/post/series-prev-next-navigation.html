@@ -1,0 +1,20 @@
+{%- if post.data.series -%}
+{# series nav #}
+{% set navDetails = page | getSeriesNavigationDetails(collections.all, collections[globals.posts.collectionName], globals.post.serie.navigation.totalLinkCount, globals.post.serie.navigation.nextLinkCount) %} 
+{% set prev = navDetails.prev %}
+{% set next = navDetails.next %}
+<section class="post-navigation series prev-next">
+    <div class="btn-group btn-group-block d-flex">
+        {%- if prev.url %}
+        <a class="btn btn-sm btn-outline-secondary" prompt="Previous" href="{{ prev.url | url }}" title="{{ prev.data.title }}"><div>{{ prev.data.title }}</div></a>
+        {% else %}
+        <a class="btn btn-sm btn-outline-secondary disabled" prompt="Previous"><div>-</div></a>
+        {% endif -%}
+        {%- if next.url %}
+        <a class="btn btn-sm btn-outline-primary" prompt="Next" href="{{ next.url | url }}" title="{{ next.data.title }}"><div>{{ next.data.title }}</div></a>
+        {% else %}
+        <a class="btn btn-sm btn-outline-primary disabled" prompt="Next"><div>-</div></a>
+        {% endif -%}        
+    </div>
+</section>
+{%- endif -%}

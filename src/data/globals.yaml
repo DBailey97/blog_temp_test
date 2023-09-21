@@ -1,0 +1,184 @@
+#
+# This is a custom data file!
+#
+
+# site
+site:
+  url: https://blog.domain.com
+  ico: /assets/logo.ico
+  logo: /assets/logo.png
+  title: BLOG
+  description: Helping others with useful content
+  keywords:
+    - digitalization
+    - business
+    - management
+    - agile
+    - software
+    - softwareengineering
+    - softwarearchitecture
+    - programming
+  copyright: Copyright - 2021
+  defaultAside: 3
+  paths:
+    rss: /rss.xml
+    searchIndex: /search.json
+  posts:
+    navbarMenuEnabled: true
+  search:
+    navbarMenuEnabled: true
+    collections:
+      - postCollection
+      - www
+    maximizeSummaryContent: 400
+    maximizeSummaryLines: 10
+
+#navbar
+navbar:
+  break: lg
+
+# cookie consent
+cookieConsent:
+    required: true
+    consentUrl: /cookies.html
+
+# google analytics
+googleAnalytics:
+  id:                             # GA https://tagmanager.google.com/
+  anonymizeIp: true               # only when loaded automatically
+
+# disqus
+disqus:
+  enabled: false                  # boolean type, the global switch for posts comments.
+  shortname:                      # disqus shortname, see › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
+
+# giscus
+gisqus:
+  enabled: false
+  repo: 
+  repoId: 
+  category: 
+  categoryId: 
+  dataMapping: pathname
+  theme: preferred_color_scheme
+  
+# used by the custom special paging - set's global paging style
+paging:
+  pageBaseIndex: 1
+  firstPageIndexed: true
+  
+#posts
+posts:
+  collectionName: postCollection
+  path: /posts    # the uri under the posts are paged (see: paged-posts.js)
+  includeSamplesOnProd: true
+  sortPinnedFirst: true
+  sortBy: date    # title | date
+  sortDesc: true  
+  pageSize: 20    # 0 to display all on a single page
+  showImage: true
+  showCategories: true
+  showTags: true
+  showContentWhenNoExcerpt: true
+  maximizeContent: 400
+  maximizeLines: 10
+  recent:
+    limit: 5
+
+post:
+  showCategories: true
+  showTags: true
+  serie:
+    navigation:
+      totalLinkCount: 4
+      nextLinkCount: 2
+  related:
+    limit: 5            # limit for related post listing
+    tagScore: 1         # linear = each category increases by same score
+    categoryScore: 2    # exponential = each category match increases by score ^ x (where x = hierarchies matched)
+    #todo: parametrization and/or totally excluding same series (they do have a series-list control)
+
+# used by tags, tag-list / tag-cloud & paged-posts-by-tag
+tags:
+  path: /tags
+  sortBy: name  # name | count
+  sortDesc: false
+  tag-cloud:
+    minFontSize: .8
+    maxFontSize: 1.8
+
+tag:
+  path: /tag
+  postsPageSize: 20     # 0 to display all on a single page
+  postsSortBy: date     # title | date
+  postsSortDesc: true
+
+# used by categories and paged-posts-by-category  
+categories:
+  path: /categories
+  sortBy: name # name | count
+  sortDesc: false
+
+category:
+  path: /category
+  postsPageSize: 20    # 0 to display all on a single page
+  postsSortBy: date    # title | date
+  postsSortDesc: true
+
+# user by series & serie
+series:
+  path: /series
+  sortBy: date  # date | name | count
+  sortDesc: desc
+
+serie:
+  path: /serie
+
+# social platforms (share, link) - user must be set, otherwise ignored!
+platforms:
+  -
+    name: LinkedIn
+    user: 
+    show: true
+    allowShare: true
+    icon: "fa-brands fa-linkedin fa-fw"
+    url: https://www.linkedin.com/in/{USER}
+    shareUrl: "https://www.linkedin.com/sharing/share-offsite/?url={URL}"
+  -
+    name: GitHub
+    user:    
+    show: true
+    icon: "fa-brands fa-github fa-fw"
+    url: https://github.com/{USER}
+  -
+    name: Twitter
+    user: 
+    show: true
+    allowShare: true
+    icon: "fa-brands fa-square-twitter fa-fw"
+    url: https://twitter.com/{USER}
+    shareUrl: "https://twitter.com/intent/tweet?text={TITLE}&url={URL}"
+  -
+    name: Facebook
+    user: 
+    show: false
+    allowShare: false
+    icon: "fa-brands fa-facebook fa-fw"
+    url: https://www.facebook.com/{USER}
+    shareUrl: "https://www.facebook.com/sharer/sharer.php?title={TITLE}&u={URL}"
+  -
+    name: Telegram
+    user:
+    show: false
+    allowShare: false
+    icon: "fa-brands fa-telegram fa-fw"
+    url: https://t.me/{USER}
+    shareUrl: "https://telegram.me/share?text={TITLE}&url={URL}"
+  -
+    name: Weibo
+    user:
+    show: false
+    allowShare: false
+    icon: "fa-brands fa-weibo fa-fw"
+    url: https://weibo.com/{USER}
+    shareUrl: "http://service.weibo.com/share/share.php?title={TITLE}&url={URL}"

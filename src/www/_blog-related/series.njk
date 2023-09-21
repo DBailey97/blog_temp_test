@@ -1,0 +1,26 @@
+---
+layout: page
+asideContentClass:
+  recent: order-0
+  tagCloud: order-1
+  toc: d-none
+title: Series
+eleventyComputed:
+  permalink: "{{ globals.series.path | normalize }}"
+---
+<div class="taxonomy series">
+
+  <div class="heading">
+    <span class="icon"><i class="fa-solid fa-layer-group fa-fw"></i></span>
+    <span class="title">{{ title }}</span>
+  </div>
+
+  <ul class="series">
+  {% for serie in collections.seriesCollection %}
+    <li>
+      <a href="{{ globals.serie.path | normalize | url }}{{ serie.name | slug }}/">{{ serie.name }}</a>
+    </li>
+  {% endfor %}
+  </ul>
+
+</div>
